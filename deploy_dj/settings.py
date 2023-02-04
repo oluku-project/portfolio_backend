@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'whitenoise.runserver_nostatic',    
+
 
     # third party packages
     "corsheaders",
@@ -40,6 +42,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -82,8 +85,16 @@ DATABASES = {
     #     'HOST': config('DB_HOSTNAME'),
     #     'PORT': config('DB_PORT'),
     # }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'W9V13Fx0d8qZSIFWYlmt',
+        'HOST': 'containers-us-west-195.railway.app',
+        'PORT': '7543',
+    }
 }
-DATABASES['default'] = dj_database_url.config('DATABASE_URL')
+# DATABASES['default'] = dj_database_url.config('DATABASE_URL')
 
 
 # Password validation
@@ -127,6 +138,8 @@ STATIC_ROOT = BASE_DIR / "staticfiles_build" / "static"
 STATICFILES_DIRS = [
     'deploy_dj/static',
 ]
+STATICFILES_STORAGE="whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 
 # media file configuration
 MEDIA_URL = '/media/'

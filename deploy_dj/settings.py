@@ -85,16 +85,16 @@ DATABASES = {
     #     'HOST': config('DB_HOSTNAME'),
     #     'PORT': config('DB_PORT'),
     # }
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'railway',
-    #     'USER': 'postgres',
-    #     'PASSWORD': 'W9V13Fx0d8qZSIFWYlmt',
-    #     'HOST': 'containers-us-west-195.railway.app',
-    #     'PORT': '7543',
-    # }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'W9V13Fx0d8qZSIFWYlmt',
+        'HOST': 'containers-us-west-195.railway.app',
+        'PORT': '7543',
+    }
 }
-DATABASES['default'] = dj_database_url.config('DATABASE_URL')
+# DATABASES['default'] = dj_database_url.config('DATABASE_URL')
 
 
 # Password validation
@@ -144,3 +144,7 @@ STATICFILES_STORAGE="whitenoise.storage.CompressedManifestStaticFilesStorage"
 # media file configuration
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+CORS_ALLOW_ALL_ORIGINS = True
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
